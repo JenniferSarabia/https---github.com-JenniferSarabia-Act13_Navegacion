@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'paginas/pagina0.dart';
 import 'paginas/pagina1.dart';
 import 'paginas/pagina2.dart';
+import 'paginas/pagina3.dart';
 
 void main() => runApp(const UrbaYFlowApp());
 
@@ -13,47 +14,15 @@ class UrbaYFlowApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true),
-      // Ahora el home es Pagina0
+      // La página de inicio es Pagina0
       home: const Pagina0(),
+      // Definición de las rutas de la aplicación
       routes: {
         '/pagina0': (context) => const Pagina0(),
         '/pagina1': (context) => const Pagina1(),
         '/pagina2': (context) => const Pagina2(),
+        '/pagina3': (context) => const Pagina3(),
       },
-    );
-  }
-}
-
-class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final currentRoute = ModalRoute.of(context)?.settings.name;
-
-    return Drawer(
-      backgroundColor: const Color(0xFF003B7A),
-      child: ListView(
-        children: [
-          const SizedBox(height: 20),
-          _drawerLink(context, "Inicio", currentRoute == '/' || currentRoute == '/pagina0', () {
-            Navigator.pushReplacementNamed(context, '/pagina0');
-          }),
-          _drawerLink(context, "Colecciones", currentRoute == '/pagina1', () {
-            Navigator.pushReplacementNamed(context, '/pagina1');
-          }),
-          _drawerLink(context, "Ofertas", currentRoute == '/pagina2', () {
-            Navigator.pushReplacementNamed(context, '/pagina2');
-          }),
-        ],
-      ),
-    );
-  }
-
-  Widget _drawerLink(BuildContext context, String title, bool active, VoidCallback onTap) {
-    return ListTile(
-      title: Text(title, style: TextStyle(color: active ? Colors.lightBlueAccent : Colors.white)),
-      onTap: onTap,
     );
   }
 }
